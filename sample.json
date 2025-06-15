@@ -1,0 +1,30 @@
+{
+    "base_url" : "https://jsonplaceholder.typicode.com",
+    "test_cases" : [{
+        "request" : {
+            "method" : "GET",
+            "path" : "/posts/1",
+            "headers" : {
+                "Content-Type" : "application/json"
+            }
+        }
+    },
+    {
+        "request" : {
+            "method" : "GET",
+            "path" : "/posts/2",
+            "headers" : {
+                "Content-Type" : "application/json"
+            }
+        }
+    },
+    {
+        "request" : {
+            "method" : "GET",
+            "path" : "/posts/3",
+            "headers" : {
+                "Content-Type" : "application/json"
+            }
+        }
+    }]
+}
