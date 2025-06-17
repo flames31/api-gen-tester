@@ -9,6 +9,7 @@ import (
 )
 
 func ParseJsonFile(file *os.File) (types.ApiTestData, error) {
+	log.L().Debug("Parsing json file :" + file.Name())
 	var testData types.ApiTestData
 	if err := json.NewDecoder(file).Decode(&testData); err != nil {
 		log.L().Error("error decoding json file : " + file.Name())

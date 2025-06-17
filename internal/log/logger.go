@@ -22,8 +22,8 @@ func Init(level string) error {
 		cfg := zap.Config{
 			Level:            zap.NewAtomicLevelAt(parsedLevel),
 			Encoding:         "console",
-			OutputPaths:      []string{"stdout"},
-			ErrorOutputPaths: []string{"stderr"},
+			OutputPaths:      []string{"logs/debug.log"},
+			ErrorOutputPaths: []string{"logs/debug.log"},
 			EncoderConfig:    zap.NewDevelopmentEncoderConfig(),
 		}
 

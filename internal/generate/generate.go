@@ -21,7 +21,7 @@ func Generate(fileName string) error {
 		fmt.Println(err)
 		return err
 	}
-
+	log.L().Debug("Calling tester.StartTest")
 	tester.StartTest(&parsedData)
 
 	return nil

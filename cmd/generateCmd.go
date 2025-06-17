@@ -18,6 +18,7 @@ var generateCmd = &cobra.Command{
 	Long: `The command generates multiple api test cases using LLMs. 
 			It uses the cases in sample.json as reference to build new test cases.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		log.L().Debug("Entering generate command")
 		if sampleFilePath == "" {
 			log.L().Error("No sample file path provided")
 			os.Exit(1)

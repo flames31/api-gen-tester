@@ -15,6 +15,7 @@ import (
 )
 
 func StartTest(testData *types.ApiTestData) {
+	log.L().Debug("entered startTest func")
 	client := httpclient.NewClient(
 		httpclient.WithHTTPTimeout(2*time.Second),
 		httpclient.WithRetryCount(3),
@@ -23,18 +24,24 @@ func StartTest(testData *types.ApiTestData) {
 
 	var wg sync.WaitGroup
 	semaphore := make(chan struct{}, 10)
+	validateChan := make(chan *types.TestCase, 10)
+
+	startValidator(validateChan)
 
 	for i := range testData.TestCases {
 		semaphore <- struct{}{}
 		wg.Add(1)
-		go sendRequest(testData.BaseURL, &testData.TestCases[i], &wg, semaphore, client, i+1)
+		testData.TestCases[i].ID = i + 1
+		go sendRequest(testData.BaseURL, &testData.TestCases[i], &wg, semaphore, validateChan, client)
 	}
 	wg.Wait()
+	close(validateChan)
 	log.L().Info("Finished processing all test cases.")
 
 }
 
-func sendRequest(baseUrl string, testCase *types.TestCase, wg *sync.WaitGroup, semaphore chan struct{}, client *httpclient.Client, id int) {
+func sendRequest(baseUrl string, testCase *types.TestCase, wg *sync.WaitGroup, semaphore chan struct{}, validateChan chan *types.TestCase, client *httpclient.Client) {
+	log.L().Debug("starting go routine to send req", zap.Int("id", testCase.ID), zap.Any("test_case", testCase))
 	defer wg.Done()
 	defer func() { <-semaphore }()
 
@@ -74,7 +81,9 @@ func sendRequest(baseUrl string, testCase *types.TestCase, wg *sync.WaitGroup, s
 	testCase.Response.Body = resBody
 	testCase.Response.StatusCode = res.StatusCode
 
-	log.L().Info("Request sent successfully.", zap.Int("id", id))
+	log.L().Debug("Request sent successfully.", zap.Int("id", testCase.ID))
+
+	validateChan <- testCase
 
 	defer res.Body.Close()
 }
