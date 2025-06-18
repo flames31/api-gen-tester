@@ -1,0 +1,68 @@
+{
+  "base_url": "https://jsonplaceholder.typicode.com",
+  "test_cases": [
+    {
+      "ID": 1,
+      "request": {
+        "method": "GET",
+        "path": "/posts/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 200,
+        "expected_status_code": 200,
+        "body": {
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "userId": 1
+        }
+      }
+    },
+    {
+      "ID": 2,
+      "request": {
+        "method": "GET",
+        "path": "/posts/2",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 200,
+        "expected_status_code": 401,
+        "body": {
+          "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
+          "id": 2,
+          "title": "qui est esse",
+          "userId": 1
+        }
+      }
+    },
+    {
+      "ID": 3,
+      "request": {
+        "method": "GET",
+        "path": "/posts/3",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 200,
+        "expected_status_code": 500,
+        "body": {
+          "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
+          "id": 3,
+          "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+          "userId": 1
+        }
+      }
+    }
+  ]
+}

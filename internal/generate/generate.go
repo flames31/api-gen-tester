@@ -15,6 +15,7 @@ func Generate(fileName string) error {
 	if err != nil {
 		log.L().Error("error opening file : " + err.Error())
 	}
+
 	defer file.Close()
 	parsedData, err := parser.ParseJsonFile(file)
 	if err != nil {
@@ -23,6 +24,8 @@ func Generate(fileName string) error {
 	}
 	log.L().Debug("Calling tester.StartTest")
 	tester.StartTest(&parsedData)
+
+	parser.WriteJson(&parsedData)
 
 	return nil
 }

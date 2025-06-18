@@ -9,7 +9,7 @@
             }
         },
         "response" : {
-            "expected_response_code" : 200
+            "expected_status_code" : 200
         }
     },
     {
@@ -21,7 +21,7 @@
             }
         },
         "response" : {
-            "expected_response_code" : 200
+            "expected_status_code" : 401
         }
     },
     {
@@ -33,7 +33,7 @@
             }
         },
         "response" : {
-            "expected_response_code" : 200
+            "expected_status_code" : 500
         }
     }]
 }

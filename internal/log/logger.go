@@ -29,7 +29,7 @@ func Init(level string) error {
 
 		logger, err = cfg.Build()
 
-		logger.Info("Logger initialzed.")
+		logger.Debug("Logger initialzed.")
 	})
 
 	return err
