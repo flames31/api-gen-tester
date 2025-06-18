@@ -27,10 +27,10 @@ func startValidator(testCaseChan chan *types.TestCase, wg *sync.WaitGroup) {
 func validate(testCase *types.TestCase) {
 	log.L().Debug("result :", zap.Int("id", testCase.ID), zap.Int("actual", testCase.Response.StatusCode), zap.Int("expected", testCase.Response.ExpectedStatusCode))
 	if testCase.Response.StatusCode == testCase.Response.ExpectedStatusCode {
-		testCase.ProgressTracker.UpdateMessage(fmt.Sprintf("Request %v : PASS", testCase.ID))
+		testCase.ProgressTracker.MarkAsDone()
 	} else {
-		testCase.ProgressTracker.UpdateMessage(fmt.Sprintf("Request %v : FAIL", testCase.ID))
+		testCase.ProgressTracker.MarkAsErrored()
 	}
+	testCase.ProgressTracker.UpdateMessage(fmt.Sprintf("Request %v : ", testCase.ID))
 	testCase.ProgressTracker.SetValue(int64(100))
-	testCase.ProgressTracker.MarkAsDone()
 }

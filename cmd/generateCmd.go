@@ -17,19 +17,28 @@ var generateCmd = &cobra.Command{
 	Short: "Generate test cases using sample cases in json file.",
 	Long: `The command generates multiple api test cases using LLMs. 
 			It uses the cases in sample.json as reference to build new test cases.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		log.L().Debug("Entering generate command")
-		if sampleFilePath == "" {
-			log.L().Error("No sample file path provided")
-			os.Exit(1)
-		}
-
-		generate.Generate(sampleFilePath)
-	},
+	Run: runGenerateFunc,
 }
 
 func init() {
+	initGenerateFlags()
+	rootCmd.AddCommand(generateCmd)
+}
+
+func runGenerateFunc(cmd *cobra.Command, args []string) {
+	log.L().Debug("Entering generate command")
+	if sampleFilePath == "" {
+		log.L().Error("No sample file path provided")
+		os.Exit(1)
+	}
+
+	if err := generate.Generate(sampleFilePath); err != nil {
+		log.L().Error("Failed to generate testcases")
+		os.Exit(1)
+	}
+}
+
+func initGenerateFlags() {
 	generateCmd.PersistentFlags().StringVarP(&sampleFilePath, "file", "f", "", "Filepath to sample json")
 	generateCmd.MarkFlagRequired("file")
-	rootCmd.AddCommand(generateCmd)
 }
