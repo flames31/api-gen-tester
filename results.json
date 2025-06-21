@@ -63,6 +63,142 @@
           "userId": 1
         }
       }
+    },
+    {
+      "ID": 4,
+      "request": {
+        "method": "GET",
+        "path": "/comments",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 0,
+        "expected_status_code": 200,
+        "body": null
+      }
+    },
+    {
+      "ID": 5,
+      "request": {
+        "method": "GET",
+        "path": "/todos/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 200,
+        "expected_status_code": 200,
+        "body": {
+          "completed": false,
+          "id": 1,
+          "title": "delectus aut autem",
+          "userId": 1
+        }
+      }
+    },
+    {
+      "ID": 6,
+      "request": {
+        "method": "POST",
+        "path": "/posts",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "body": "bar",
+          "title": "foo",
+          "userId": 1
+        }
+      },
+      "response": {
+        "status_code": 201,
+        "expected_status_code": 201,
+        "body": {
+          "body": "bar",
+          "id": 101,
+          "title": "foo",
+          "userId": 1
+        }
+      }
+    },
+    {
+      "ID": 7,
+      "request": {
+        "method": "PUT",
+        "path": "/posts/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "body": "bar1",
+          "id": 1,
+          "title": "foo1",
+          "userId": 1
+        }
+      },
+      "response": {
+        "status_code": 200,
+        "expected_status_code": 200,
+        "body": {
+          "body": "bar1",
+          "id": 1,
+          "title": "foo1",
+          "userId": 1
+        }
+      }
+    },
+    {
+      "ID": 8,
+      "request": {
+        "method": "POST",
+        "path": "/posts/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 0,
+        "expected_status_code": 200,
+        "body": null
+      }
+    },
+    {
+      "ID": 9,
+      "request": {
+        "method": "GET",
+        "path": "/albums/1/photos",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 0,
+        "expected_status_code": 200,
+        "body": null
+      }
+    },
+    {
+      "ID": 10,
+      "request": {
+        "method": "GET",
+        "path": "/users",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 0,
+        "expected_status_code": 200,
+        "body": null
+      }
     }
   ]
 }

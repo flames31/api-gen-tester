@@ -32,7 +32,7 @@ func runGenerateFunc(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	if err := generate.Generate(sampleFilePath); err != nil {
+	if err := generate.StartGenerate(sampleFilePath); err != nil {
 		log.L().Error("Failed to generate testcases")
 		os.Exit(1)
 	}
