@@ -31,6 +31,6 @@ func validate(testCase *types.TestCase) {
 	} else {
 		testCase.ProgressTracker.MarkAsErrored()
 	}
-	testCase.ProgressTracker.UpdateMessage(fmt.Sprintf("Request %v : ", testCase.ID))
+	testCase.ProgressTracker.UpdateMessage(fmt.Sprintf("Request %-3d"+"\t:\t", testCase.ID))
 	testCase.ProgressTracker.SetValue(int64(100))
 }

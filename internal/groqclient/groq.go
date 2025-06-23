@@ -11,7 +11,7 @@ import (
 const MODEL = "llama3-70b-8192"
 
 func Client() (*groq.Client, error) {
-	err := godotenv.Load("/Users/rahul31/Desktop/GoProjects/api-gen-tester/internal/groqclient/.env")
+	err := godotenv.Load(".env")
 	if err != nil {
 		return nil, err
 	}

@@ -4,25 +4,13 @@ import (
 	"github.com/flames31/api-gen-tester/internal/log"
 	"github.com/flames31/api-gen-tester/internal/parser"
 	"github.com/flames31/api-gen-tester/internal/tester"
-	"github.com/flames31/api-gen-tester/internal/tracker"
-	"github.com/jedib0t/go-pretty/v6/progress"
 	"go.uber.org/zap"
 )
 
 func StartGenerate(fileName string) error {
 	log.L().Info("Generating new data for : " + fileName)
 
-	genPW := tracker.NewGenTracker()
-
-	genTR := &progress.Tracker{
-		Message: "Generating test cases",
-		Total:   100,
-		Units:   progress.UnitsDefault,
-	}
-	genPW.AppendTracker(genTR)
-	go genPW.Render()
-
-	genTR.SetValue(20)
+	genPW, genTR := startTracker()
 
 	newTestDataStr, err := generateCases(fileName, genTR)
 	if err != nil {
@@ -39,7 +27,7 @@ func StartGenerate(fileName string) error {
 		log.L().Error("error parsing json file : ", zap.Error(err))
 		return err
 	}
-	log.L().Debug("Calling tester.StartTest")
+
 	tester.StartTest(&parsedData)
 
 	if err := parser.WriteJson(&parsedData); err != nil {
