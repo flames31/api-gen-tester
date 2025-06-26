@@ -1,11 +1,13 @@
 package generate
 
 import (
+	"github.com/flames31/api-gen-tester/internal/log"
 	"github.com/flames31/api-gen-tester/internal/tracker"
 	"github.com/jedib0t/go-pretty/v6/progress"
 )
 
 func startTracker() (progress.Writer, *progress.Tracker) {
+	log.L().Debug("started tracker")
 	pw := tracker.NewGenTracker()
 
 	tr := &progress.Tracker{

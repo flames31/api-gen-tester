@@ -1,11 +1,10 @@
 package cmd
 
 import (
-	"os"
-
 	"github.com/flames31/api-gen-tester/internal/generate"
 	"github.com/flames31/api-gen-tester/internal/log"
 	"github.com/spf13/cobra"
+	"go.uber.org/zap"
 )
 
 var (
@@ -28,13 +27,11 @@ func init() {
 func runGenerateFunc(cmd *cobra.Command, args []string) {
 	log.L().Debug("Entering generate command")
 	if sampleFilePath == "" {
-		log.L().Error("No sample file path provided")
-		os.Exit(1)
+		log.L().Fatal("No sample file path provided!!! Shutting down...")
 	}
 
 	if err := generate.StartGenerate(sampleFilePath); err != nil {
-		log.L().Error("Failed to generate testcases")
-		os.Exit(1)
+		log.L().Fatal("Failed to generate testcases!", zap.Error(err))
 	}
 }
 

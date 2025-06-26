@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/flames31/api-gen-tester/internal/log"
 	"github.com/flames31/api-gen-tester/internal/types"
 	"github.com/gojek/heimdall/v7"
 	"github.com/gojek/heimdall/v7/httpclient"
@@ -34,6 +35,7 @@ func updateTestCase(testData *types.ApiTestData, i int, pw progress.Writer) {
 }
 
 func send(testCase *types.TestCase, baseUrl string, client *httpclient.Client) error {
+	log.L().Debug("entered send func")
 	reqBody, err := json.Marshal(testCase.Request.Body)
 	if err != nil {
 		return fmt.Errorf("error marshalling req body : %w", err)

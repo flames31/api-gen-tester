@@ -6,10 +6,12 @@ import (
 	"os"
 
 	"github.com/flames31/api-gen-tester/internal/groqclient"
+	"github.com/flames31/api-gen-tester/internal/log"
 	"github.com/jedib0t/go-pretty/v6/progress"
 )
 
 func generateCases(fileName string, genTR *progress.Tracker) (string, error) {
+	log.L().Debug("Entered generateCases func")
 	client, err := groqclient.Client()
 	if err != nil {
 		return "", fmt.Errorf("error creating new client : %w", err)

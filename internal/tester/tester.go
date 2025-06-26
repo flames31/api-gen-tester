@@ -1,6 +1,7 @@
 package tester
 
 import (
+	"fmt"
 	"sync"
 
 	"github.com/flames31/api-gen-tester/internal/log"
@@ -45,7 +46,7 @@ func sendRequest(baseUrl string, testCase *types.TestCase, wg *sync.WaitGroup, s
 	defer func() { <-semaphore }()
 
 	if err := send(testCase, baseUrl, client); err != nil {
-		log.L().Error("error sending req", zap.Error(err))
+		log.L().Error(fmt.Sprintf("error with req %v", testCase.ID), zap.Error(err))
 	}
 
 	log.L().Debug("Request sent successfully.", zap.Int("id", testCase.ID))

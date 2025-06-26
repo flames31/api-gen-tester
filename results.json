@@ -68,21 +68,16 @@
       "ID": 4,
       "request": {
         "method": "GET",
-        "path": "/posts/4",
+        "path": "/posts",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 200,
+        "status_code": 0,
         "expected_status_code": 200,
-        "body": {
-          "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
-          "id": 4,
-          "title": "eum et est occaecati",
-          "userId": 1
-        }
+        "body": null
       }
     },
     {
@@ -94,15 +89,19 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "title": "New Post"
+          "body": "This is a new post",
+          "title": "New Post",
+          "userId": 1
         }
       },
       "response": {
         "status_code": 201,
         "expected_status_code": 201,
         "body": {
+          "body": "This is a new post",
           "id": 101,
-          "title": "New Post"
+          "title": "New Post",
+          "userId": 1
         }
       }
     },
@@ -115,15 +114,20 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "title": "Updated Post"
+          "body": "This is an updated post",
+          "id": 1,
+          "title": "Updated Post",
+          "userId": 1
         }
       },
       "response": {
         "status_code": 200,
         "expected_status_code": 200,
         "body": {
+          "body": "This is an updated post",
           "id": 1,
-          "title": "Updated Post"
+          "title": "Updated Post",
+          "userId": 1
         }
       }
     },
@@ -139,7 +143,7 @@
       },
       "response": {
         "status_code": 0,
-        "expected_status_code": 204,
+        "expected_status_code": 200,
         "body": null
       }
     },
@@ -147,64 +151,85 @@
       "ID": 8,
       "request": {
         "method": "GET",
-        "path": "/comments",
+        "path": "/comments/1",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
+        "status_code": 200,
         "expected_status_code": 200,
-        "body": null
+        "body": {
+          "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+          "email": "Eliseo@gardner.biz",
+          "id": 1,
+          "name": "id labore ex et quam laborum",
+          "postId": 1
+        }
       }
     },
     {
       "ID": 9,
       "request": {
         "method": "GET",
-        "path": "/albums",
+        "path": "/albums/1",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
+        "status_code": 200,
         "expected_status_code": 200,
-        "body": null
+        "body": {
+          "id": 1,
+          "title": "quidem molestiae enim",
+          "userId": 1
+        }
       }
     },
     {
       "ID": 10,
       "request": {
         "method": "GET",
-        "path": "/photos",
+        "path": "/photos/1",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
+        "status_code": 200,
         "expected_status_code": 200,
-        "body": null
+        "body": {
+          "albumId": 1,
+          "id": 1,
+          "thumbnailUrl": "https://via.placeholder.com/150/92c952",
+          "title": "accusamus beatae ad facilis cum similique qui sunt",
+          "url": "https://via.placeholder.com/600/92c952"
+        }
       }
     },
     {
       "ID": 11,
       "request": {
         "method": "GET",
-        "path": "/users",
+        "path": "/todos/1",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
+        "status_code": 200,
         "expected_status_code": 200,
-        "body": null
+        "body": {
+          "completed": false,
+          "id": 1,
+          "title": "delectus aut autem",
+          "userId": 1
+        }
       }
     }
   ]

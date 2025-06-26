@@ -1,8 +1,12 @@
 package generate
 
-import "github.com/flames31/groq-client/groq"
+import (
+	"github.com/flames31/api-gen-tester/internal/log"
+	"github.com/flames31/groq-client/groq"
+)
 
 func createPrompt(testDataStr string) []groq.Message {
+	log.L().Debug("creating tracker")
 	prompt := []groq.Message{
 		{
 			Role:    "system",
