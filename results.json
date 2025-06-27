@@ -92,7 +92,7 @@
       },
       "response": {
         "status_code": 0,
-        "expected_status_code": 404,
+        "expected_status_code": 400,
         "body": null
       }
     },
@@ -100,28 +100,7 @@
       "ID": 6,
       "request": {
         "method": "GET",
-        "path": "/posts/100",
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": null
-      },
-      "response": {
-        "status_code": 200,
-        "expected_status_code": 404,
-        "body": {
-          "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut",
-          "id": 100,
-          "title": "at nam consequatur ea labore ea harum",
-          "userId": 10
-        }
-      }
-    },
-    {
-      "ID": 7,
-      "request": {
-        "method": "GET",
-        "path": "/posts/-100",
+        "path": "/posts/1/comments",
         "headers": {
           "Content-Type": "application/json"
         },
@@ -129,15 +108,15 @@
       },
       "response": {
         "status_code": 0,
-        "expected_status_code": 404,
+        "expected_status_code": 200,
         "body": null
       }
     },
     {
-      "ID": 8,
+      "ID": 7,
       "request": {
         "method": "GET",
-        "path": "/posts/a",
+        "path": "/posts/1/comments/1",
         "headers": {
           "Content-Type": "application/json"
         },
@@ -145,7 +124,23 @@
       },
       "response": {
         "status_code": 404,
-        "expected_status_code": 404,
+        "expected_status_code": 200,
+        "body": {}
+      }
+    },
+    {
+      "ID": 8,
+      "request": {
+        "method": "GET",
+        "path": "/posts/abc",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 404,
+        "expected_status_code": 400,
         "body": {}
       }
     },
@@ -161,7 +156,7 @@
       },
       "response": {
         "status_code": 0,
-        "expected_status_code": 200,
+        "expected_status_code": 405,
         "body": null
       }
     },
@@ -174,8 +169,8 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "body": "bar",
-          "title": "foo",
+          "body": "Test Body",
+          "title": "Test Post",
           "userId": 1
         }
       },
@@ -183,9 +178,9 @@
         "status_code": 201,
         "expected_status_code": 201,
         "body": {
-          "body": "bar",
+          "body": "Test Body",
           "id": 101,
-          "title": "foo",
+          "title": "Test Post",
           "userId": 1
         }
       }
@@ -199,19 +194,17 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "body": "bar",
-          "title": "",
-          "userId": 1
+          "body": "Test Body",
+          "title": "Test Post"
         }
       },
       "response": {
         "status_code": 201,
-        "expected_status_code": 422,
+        "expected_status_code": 400,
         "body": {
-          "body": "bar",
+          "body": "Test Body",
           "id": 101,
-          "title": "",
-          "userId": 1
+          "title": "Test Post"
         }
       }
     },
@@ -224,18 +217,18 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "body": "",
-          "title": "foo",
+          "body": "Test Body",
+          "title": "",
           "userId": 1
         }
       },
       "response": {
         "status_code": 201,
-        "expected_status_code": 422,
+        "expected_status_code": 400,
         "body": {
-          "body": "",
+          "body": "Test Body",
           "id": 101,
-          "title": "foo",
+          "title": "",
           "userId": 1
         }
       }
@@ -249,17 +242,19 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "body": "bar",
-          "title": "foo"
+          "body": "",
+          "title": "Test Post",
+          "userId": 1
         }
       },
       "response": {
         "status_code": 201,
-        "expected_status_code": 422,
+        "expected_status_code": 400,
         "body": {
-          "body": "bar",
+          "body": "",
           "id": 101,
-          "title": "foo"
+          "title": "Test Post",
+          "userId": 1
         }
       }
     },
@@ -269,42 +264,43 @@
         "method": "POST",
         "path": "/posts",
         "headers": {
-          "Content-Type": "application/json"
+          "Content-Type": "application/xml"
         },
         "body": {
-          "body": "bar",
-          "title": "foo",
-          "userId": 0
+          "body": "Test Body",
+          "title": "Test Post"
         }
       },
       "response": {
         "status_code": 201,
-        "expected_status_code": 422,
+        "expected_status_code": 415,
         "body": {
-          "body": "bar",
-          "id": 101,
-          "title": "foo",
-          "userId": 0
+          "id": 101
         }
       }
     },
     {
       "ID": 15,
       "request": {
-        "method": "GET",
-        "path": "/posts/1",
+        "method": "POST",
+        "path": "/posts",
         "headers": {
-          "Content-Type": "application/xml"
+          "Authorization": "Bearer invalid_token",
+          "Content-Type": "application/json"
         },
-        "body": null
+        "body": {
+          "body": "Test Body",
+          "title": "Test Post",
+          "userId": 1
+        }
       },
       "response": {
-        "status_code": 200,
-        "expected_status_code": 400,
+        "status_code": 201,
+        "expected_status_code": 401,
         "body": {
-          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-          "id": 1,
-          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "body": "Test Body",
+          "id": 101,
+          "title": "Test Post",
           "userId": 1
         }
       }
@@ -315,13 +311,14 @@
         "method": "GET",
         "path": "/posts/1",
         "headers": {
-          "Accept-Language": "en-us"
+          "Authorization": "Bearer invalid_token",
+          "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
         "status_code": 200,
-        "expected_status_code": 200,
+        "expected_status_code": 401,
         "body": {
           "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
           "id": 1,
@@ -334,80 +331,66 @@
       "ID": 17,
       "request": {
         "method": "GET",
-        "path": "/posts/1?_limit=10",
+        "path": "/posts/1",
         "headers": {
+          "Accept-Language": "fr",
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
+        "status_code": 200,
         "expected_status_code": 200,
-        "body": null
+        "body": {
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "userId": 1
+        }
       }
     },
     {
       "ID": 18,
       "request": {
         "method": "GET",
-        "path": "/posts/1?_limit=-1",
+        "path": "/posts/1",
         "headers": {
+          "Accept": "application/xml",
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
-        "expected_status_code": 400,
-        "body": null
+        "status_code": 200,
+        "expected_status_code": 406,
+        "body": {
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "userId": 1
+        }
       }
     },
     {
       "ID": 19,
       "request": {
         "method": "GET",
-        "path": "/posts/1?_limit=a",
+        "path": "/posts/1",
         "headers": {
+          "Accept-Charset": "utf-16",
           "Content-Type": "application/json"
         },
         "body": null
       },
       "response": {
-        "status_code": 0,
-        "expected_status_code": 400,
-        "body": null
-      }
-    },
-    {
-      "ID": 20,
-      "request": {
-        "method": "GET",
-        "path": "/posts/1?_limit=100",
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": null
-      },
-      "response": {
-        "status_code": 0,
-        "expected_status_code": 200,
-        "body": null
-      }
-    },
-    {
-      "ID": 21,
-      "request": {
-        "method": "GET",
-        "path": "/posts/1?_limit=0",
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": null
-      },
-      "response": {
-        "status_code": 0,
-        "expected_status_code": 200,
-        "body": null
+        "status_code": 200,
+        "expected_status_code": 406,
+        "body": {
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "userId": 1
+        }
       }
     }
   ]

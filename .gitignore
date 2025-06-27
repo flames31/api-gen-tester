@@ -32,3 +32,5 @@ go.work.sum
 # .vscode/
 
 /logs/debug.log
+
+api-gen-tester

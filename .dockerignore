@@ -1,0 +1,6 @@
+.git/
+*.md
+*.test
+vendor/
+.DS_Store
+api-gen-tester
