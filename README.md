@@ -1,4 +1,4 @@
-# API Gen Tester CLI
+# Distributed Generative API Testing CLI tool
 
 A powerful Go-based CLI tool for generating, executing, and validating API test cases using large language models (LLMs) like OpenAI or Groq.
 
